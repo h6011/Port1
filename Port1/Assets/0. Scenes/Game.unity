@@ -402,6 +402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 976670824}
+  - component: {fileID: 976670826}
   - component: {fileID: 976670825}
   m_Layer: 0
   m_Name: Background
@@ -440,6 +441,24 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &976670826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976670823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4f247d864cd8f45ab71a1ec53a43ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topTrs: {fileID: 811400981}
+  middleTrs: {fileID: 2067362284}
+  bottomTrs: {fileID: 1596110325}
+  topSpeed: 1
+  middleSpeed: 0.7
+  bottomSpeed: 0.5
 --- !u!1 &1138781233
 GameObject:
   m_ObjectHideFlags: 0
