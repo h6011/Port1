@@ -51,7 +51,7 @@ public class BackgroundController : MonoBehaviour
         vecMid.y = Mathf.Repeat(vecMid.y, 1.0f);
         vecBot.y = Mathf.Repeat(vecBot.y, 1.0f);
 
-        Debug.Log(topMaterial);
+        // Debug.Log(topMaterial);
 
         topMaterial.mainTextureOffset = vecTop;
         middleMaterial.mainTextureOffset = vecMid;
