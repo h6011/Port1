@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour
         bounds = capsuleCollider.bounds;
     }
 
+    private void Start()
+    {
+        LockInCamera.Instance.SetPlayer(capsuleCollider.size);
+    }
 
     private void Update()
     {
@@ -41,11 +45,8 @@ public class PlayerController : MonoBehaviour
         moveDir.x = x;
         moveDir.y = y;
 
-        LockInCamera.Instance.CheckPosition(transform, capsuleCollider.bounds);
-
-        
-
-
+        //LockInCamera.Instance.CheckPosition(transform, capsuleCollider.bounds);
+        LockInCamera.Instance.CheckPosition(transform);
     }
 
     private void animationAction()

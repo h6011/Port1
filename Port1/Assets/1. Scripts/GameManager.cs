@@ -4,14 +4,56 @@ using UnityEngine;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
+    private float gameTimer = 0f;
+    private float meter = 0f;
+    private int score = 0;
+    private int coin = 0;
+
+    private bool GameStarted = false;
+
+    public float GameTimer => gameTimer;
+    public float Meter => meter;
+    public int Score => score;
+    public int Coin => coin;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        GameStarted = true;
+    }
 
     private void Update()
     {
         gameExitKeyAction();
+        timerAction();
     }
 
+    private void timerAction()
+    {
+        if (GameStarted)
+        {
+            gameTimer += Time.deltaTime;
+        }
+    }
     
 
+
+
+
+    
 
     private void gameExitKeyAction()
     {
