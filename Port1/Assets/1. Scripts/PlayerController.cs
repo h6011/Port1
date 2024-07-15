@@ -7,13 +7,18 @@ public class PlayerController : MonoBehaviour
 {
     Animator animator;
     CapsuleCollider2D capsuleCollider;
+    Bounds bounds;
 
     Vector2 moveDir;
+
+    [Header("Stat")]
+    [SerializeField] float speed = 1f;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        bounds = capsuleCollider.bounds;
     }
 
 
@@ -31,10 +36,14 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        transform.Translate(new Vector2(x, y) * Time.deltaTime);
+        transform.Translate(new Vector2(x, y) * speed * Time.deltaTime);
 
         moveDir.x = x;
         moveDir.y = y;
+
+        LockInCamera.Instance.CheckPosition(transform, capsuleCollider.bounds);
+
+        
 
 
     }
