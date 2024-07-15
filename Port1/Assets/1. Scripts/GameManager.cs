@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        gameExitKeyAction();
+        //gameExitKeyAction();
         timerAction();
     }
 
