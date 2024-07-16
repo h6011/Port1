@@ -17,6 +17,7 @@ public class MainCanvasManager : MonoBehaviour
 
     [Header("Pase UI Button")]
     [SerializeField] Button resumeBtn;
+    [SerializeField] Button backBtn;
     [SerializeField] Button exitGameBtn;
 
     private void Awake()
@@ -35,6 +36,8 @@ public class MainCanvasManager : MonoBehaviour
         SetVisibleUIFromName("InGame", true);
         SetVisibleUIFromName("Pause", false);
         ClickActions();
+        gameManager.UnpauseGame();
+        gameManager.GameStart();
     }
 
     private void Update()
@@ -46,11 +49,16 @@ public class MainCanvasManager : MonoBehaviour
     private void ClickActions()
     {
         gameManager.AddListenerToBtn(resumeBtn, () => {
+            gameManager.UnpauseGame();
             ToggleVisibleUIFromName("Pause");
         });
 
+        gameManager.AddListenerToBtn(backBtn, () => {
+            gameManager.BackToLobby();
+        });
+
         gameManager.AddListenerToBtn(exitGameBtn, () => {
-            SceneManager.LoadScene("Lobby");
+            gameManager.GameExit();
         });
 
     }
@@ -79,10 +87,12 @@ public class MainCanvasManager : MonoBehaviour
 
     private void displayGameUIAction()
     {
-        coinText.text = gameManager.Coin.ToString();
+        coinText.text = gameManager.Money.ToString();
         ScoreText.text = gameManager.Score.ToString();
-        MeterText.text = gameManager.Meter.ToString();
+        MeterText.text = string.Format("{0:N0}M", gameManager.Meter);
     }
+
+    
 
 
     public bool GetVisibleUIFromName(string _name)

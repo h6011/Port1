@@ -287,6 +287,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f455fc3dfed628c4c872cf8be3a88494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameTimer: 0
+  meter: 0
+  score: 0
+  money: 0
+  GameStarted: 0
+  GamePaused: 0
 --- !u!4 &30102987
 Transform:
   m_ObjectHideFlags: 0

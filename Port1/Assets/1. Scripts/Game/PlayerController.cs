@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
         public class PlayerKeySettings
         {
             public KeyCode pauseKey = KeyCode.Escape;
+            public KeyCode shotKey = KeyCode.Space;
         }
 
         public enum ePlayerSettingsFpsType
@@ -28,7 +30,6 @@ public class PlayerController : MonoBehaviour
         }
 
         public PlayerKeySettings playerKeySettings;
-
         public ePlayerSettingsFpsType fpsType;
     }
 
@@ -39,11 +40,20 @@ public class PlayerController : MonoBehaviour
 
     Animator animator;
     CapsuleCollider2D capsuleCollider;
+    GameManager gameManager;
 
     Vector2 moveDir;
 
+    [Header("Vars")]
+    [SerializeField] GameObject playerBullet;
+    [SerializeField] Transform dynamic;
+
     [Header("Stat")]
     [SerializeField] float speed = 1f;
+    [SerializeField] float shotDelay = 0.1f;
+
+    private float shotTimer;
+
 
     private void Awake()
     {
@@ -74,13 +84,45 @@ public class PlayerController : MonoBehaviour
 
         checkFps();
 
-
+        gameManager = GameManager.Instance;
     }
 
     private void Update()
     {
+        timerAction();
+
         moveAction();
         animationAction();
+        shotAction();
+        
+    }
+
+    private void timerAction()
+    {
+        shotTimer += Time.deltaTime;
+    }
+
+    private void shot()
+    {
+        Debug.Log("Shot");
+
+        GameObject newBullet = Instantiate(playerBullet,transform.position, Quaternion.Euler(0, 0, 0), dynamic);
+        Bullet bulletScript = newBullet.GetComponent<Bullet>();
+
+    }
+
+    private void shotAction()
+    {
+        if (Input.GetKey(playerSettings.playerKeySettings.shotKey) && !gameManager.GamePaused)
+        {
+            if (shotTimer >= shotDelay)
+            {
+                shotTimer = 0f;
+                shot();
+
+            }
+        }
+        
     }
 
 
@@ -106,13 +148,15 @@ public class PlayerController : MonoBehaviour
         moveDir.x = x;
         moveDir.y = y;
 
-        //LockInCamera.Instance.CheckPosition(transform, capsuleCollider.bounds);
         LockInCamera.Instance.CheckPosition(transform);
     }
 
     private void animationAction()
     {
-        animator.SetInteger("Horizontal", (int)moveDir.x);
+        if (!gameManager.GamePaused)
+        {
+            animator.SetInteger("Horizontal", (int)moveDir.x);
+        }
     }
 
     public PlayerSettings.PlayerKeySettings GetKeySettings()
