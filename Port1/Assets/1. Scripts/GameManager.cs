@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -12,6 +14,7 @@ public class GameManager : MonoBehaviour
     private int coin = 0;
 
     private bool GameStarted = false;
+    public bool GamePaused = false;
 
     public float GameTimer => gameTimer;
     public float Meter => meter;
@@ -49,12 +52,28 @@ public class GameManager : MonoBehaviour
             gameTimer += Time.deltaTime;
         }
     }
-    
+
+    public void PauseGame()
+    {
+        GamePaused = true;
+        Time.timeScale = 0f;
+    }
+
+    public void UnpauseGame()
+    {
+        GamePaused = false;
+        Time.timeScale = 1f;
+    }
 
 
 
+    public void AddListenerToBtn(Button _btn, UnityEngine.Events.UnityAction action)
+    {
+        _btn.onClick.RemoveAllListeners();
+        _btn.onClick.AddListener(action);
+    }
 
-    
+
 
     private void gameExitKeyAction()
     {

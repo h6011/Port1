@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScreenManager : MonoBehaviour
 {
+    [SerializeField] private Vector2 referenceResolution = new Vector2(1080, 1920);
+
     [SerializeField] private float ratioX = 9.0f;
     [SerializeField] private float ratioY = 16.0f;
 
@@ -12,9 +14,14 @@ public class ScreenManager : MonoBehaviour
     private void Awake()
     {
         if(Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
     private void Start()
