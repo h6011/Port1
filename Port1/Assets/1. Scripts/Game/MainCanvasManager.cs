@@ -89,7 +89,7 @@ public class MainCanvasManager : MonoBehaviour
     {
         coinText.text = gameManager.Money.ToString();
         ScoreText.text = gameManager.Score.ToString();
-        MeterText.text = string.Format("{0:N0}M", gameManager.Meter);
+        MeterText.text = $"{(int)gameManager.Meter}M";
     }
 
     

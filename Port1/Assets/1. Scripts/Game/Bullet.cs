@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] bool isOwnerPlayer = true;
     [SerializeField] float bulletSpeed = 3f;
+    private int damage = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,8 +15,8 @@ public class Bullet : MonoBehaviour
         {
             if (collision.CompareTag("Enemy"))
             {
-
-
+                Enemy enemyScript = collision.GetComponent<Enemy>();
+                enemyScript.GetDamage(damage);
                 destroySelf();
             }
         }

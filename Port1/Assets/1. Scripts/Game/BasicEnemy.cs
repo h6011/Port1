@@ -8,11 +8,12 @@ public class BasicEnemy : Enemy
     [SerializeField] float speed = 4f;
 
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         moveAction();
     }
-    
+
 
     private void moveAction()
     {

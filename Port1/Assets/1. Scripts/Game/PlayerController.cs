@@ -44,9 +44,12 @@ public class PlayerController : MonoBehaviour
 
     Vector2 moveDir;
 
-    [Header("Vars")]
+    [Header("Prefab")]
     [SerializeField] GameObject playerBullet;
+
+    [Header("Vars")]
     [SerializeField] Transform dynamic;
+    [SerializeField] Transform shotPos;
 
     [Header("Stat")]
     [SerializeField] float speed = 1f;
@@ -104,9 +107,9 @@ public class PlayerController : MonoBehaviour
 
     private void shot()
     {
-        Debug.Log("Shot");
+        //Debug.Log("Shot");
 
-        GameObject newBullet = Instantiate(playerBullet,transform.position, Quaternion.Euler(0, 0, 0), dynamic);
+        GameObject newBullet = Instantiate(playerBullet, shotPos.position, Quaternion.Euler(0, 0, 0), dynamic);
         Bullet bulletScript = newBullet.GetComponent<Bullet>();
 
     }
