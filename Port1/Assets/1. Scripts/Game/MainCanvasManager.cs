@@ -48,16 +48,16 @@ public class MainCanvasManager : MonoBehaviour
 
     private void ClickActions()
     {
-        gameManager.AddListenerToBtn(resumeBtn, () => {
+        Tool.AddListenerToBtn(resumeBtn, () => {
             gameManager.UnpauseGame();
             ToggleVisibleUIFromName("Pause");
         });
 
-        gameManager.AddListenerToBtn(backBtn, () => {
+        Tool.AddListenerToBtn(backBtn, () => {
             gameManager.BackToLobby();
         });
 
-        gameManager.AddListenerToBtn(exitGameBtn, () => {
+        Tool.AddListenerToBtn(exitGameBtn, () => {
             gameManager.GameExit();
         });
 

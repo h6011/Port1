@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProbabilityManager : MonoBehaviour
 {
-    ProbabilityManager Instance;
+    public static ProbabilityManager Instance;
 
 
     private void Awake()
@@ -23,7 +23,7 @@ public class ProbabilityManager : MonoBehaviour
     public bool isSuccess(float Probability)
     {
         Probability = Mathf.Clamp(Probability, 0, 100);
-        float picked = Random.Range(0f, Probability);
+        float picked = Random.Range(0f, 100f);
         if (picked <= Probability)
         {
             return true;

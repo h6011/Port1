@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a47231c7c1f8640aa7aa44878eae11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyType: 1
+  moneyType: 10
 --- !u!212 &8133855223148797049
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.54, y: 0.52}
+    oldSize: {x: 0.3857143, y: 0.37142858}
     newSize: {x: 0.27, y: 0.26}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

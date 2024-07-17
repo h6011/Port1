@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -98,9 +97,11 @@ public class GameManager : MonoBehaviour
 
         float gap = 1.1f;
 
+        int picked = Random.Range(-2, 3);
+
         for (int iNum = -2; iNum <= 2; iNum++)
         {
-            enemyManager.SpawnEnemy(eEnemyType.BasicEnemy, new Vector3(iNum * gap, 0, 0));
+            enemyManager.SpawnEnemy(eEnemyType.BasicEnemy, iNum == picked, new Vector3(iNum * gap, 0, 0));
         }
 
     }
@@ -109,9 +110,20 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("spawnBoss");
         isBossStage = true;
-        enemyManager.SpawnEnemy(eEnemyType.Boss);
+        enemyManager.SpawnEnemy(eEnemyType.Boss, false);
     }
-    
+
+    public void GetScoreByEnemyType(eEnemyType enemyType)
+    {
+        if (enemyType == eEnemyType.BasicEnemy)
+        {
+            score += 200;
+        }
+        else if (enemyType == eEnemyType.Boss)
+        {
+            score += 1500;
+        }
+    }
 
 
     public void GameStart()
@@ -121,6 +133,9 @@ public class GameManager : MonoBehaviour
         meter = 0;
         score = 0;
         money = 0;
+        spawnedMeter = 0;
+
+        isBossStage = false;
     }
 
     public void GameEnd()
@@ -172,11 +187,11 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void AddListenerToBtn(Button _btn, UnityEngine.Events.UnityAction action)
-    {
-        _btn.onClick.RemoveAllListeners();
-        _btn.onClick.AddListener(action);
-    }
+    //public void AddListenerToBtn(Button _btn, UnityEngine.Events.UnityAction action)
+    //{
+    //    _btn.onClick.RemoveAllListeners();
+    //    _btn.onClick.AddListener(action);
+    //}
 
 
 

@@ -8,9 +8,11 @@ public class Bullet : MonoBehaviour
     [SerializeField] bool isOwnerPlayer = true;
     [SerializeField] float bulletSpeed = 3f;
     private int damage = 1;
+    bool isDestroyed = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isDestroyed) return;
         if (isOwnerPlayer)
         {
             if (collision.CompareTag("Enemy"))
@@ -32,6 +34,7 @@ public class Bullet : MonoBehaviour
 
     private void destroySelf()
     {
+        isDestroyed = true;
         Destroy(gameObject);
     }
 

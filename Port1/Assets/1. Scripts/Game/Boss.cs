@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
-    GameManager gameManager;
-
     private float startSpawnMoveTimer = 0f;
     private bool isStartSpawnMove = false;
 
     private Vector3 spawnedPos;
 
-    private Vector3 testOffset = new Vector3(0, -3, 0);
+    private Vector3 moveOffset = new Vector3(0, -3, 0);
 
 
 
@@ -31,16 +29,16 @@ public class Boss : Enemy
         startSpawnMoveAction();
     }
 
-    private void Start()
-    {
-        gameManager = GameManager.Instance;
-    }
+    //protected override void Start()
+    //{
+    //    base.Start();
+    //}
 
 
 
     private void startSpawnMoveAction()
     {
-        transform.position = Vector3.Lerp(spawnedPos, spawnedPos + testOffset, startSpawnMoveTimer);
+        transform.position = Vector3.Lerp(spawnedPos, spawnedPos + moveOffset, startSpawnMoveTimer);
     }
 
     private void timerAction()
@@ -54,6 +52,11 @@ public class Boss : Enemy
                 startSpawnMoveTimer = 1;
             }
         }
+    }
+
+    public override void GetDamage(int _damage)
+    {
+        base.GetDamage(_damage);
     }
 
 

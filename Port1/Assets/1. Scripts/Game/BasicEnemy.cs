@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicEnemy : Enemy
 {
 
+    [Header("Basic Enemy Stat")]
     [SerializeField] float speed = 4f;
 
 

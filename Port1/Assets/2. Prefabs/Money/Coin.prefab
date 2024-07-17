@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a47231c7c1f8640aa7aa44878eae11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyType: 0
+  moneyType: 1
 --- !u!212 &82764483235766480
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -5,13 +5,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    protected int hp;
+    protected EnemyManager enemyManager;
+    protected GameManager gameManager;
+
+    [Header("Enemy Stat")]
+    [SerializeField] protected int hp;
     [SerializeField] protected int maxHp;
 
     protected float hitAlpha;
     private float hitSpriteTime = 0.05f;
 
-    Animator animator;
+    private Animator animator;
+
+    [SerializeField] eEnemyType enemyType;
+    public bool isUpgraded = false;
 
     //protected virtual void OnTriggerEnter2D(Collider2D collision)
     //{
@@ -27,15 +34,34 @@ public class Enemy : MonoBehaviour
         hp = maxHp;
     }
 
+    protected virtual void Start()
+    {
+        enemyManager = EnemyManager.Instance;
+        gameManager = GameManager.Instance;
+    }
+
+
+    public void getDestroy(bool ByPlayer = false)
+    {
+        if (ByPlayer)
+        {
+            enemyManager.WhenEnemyDied(transform, enemyType, isUpgraded);
+        }
+        if (enemyType == eEnemyType.Boss)
+        {
+            gameManager.isBossStage = false;
+        }
+        Destroy(gameObject);
+    }
     
 
-    public void GetDamage(int _damage)
+    public virtual void GetDamage(int _damage)
     {
         hp -= _damage;
         hitAlpha = 1;
         if (hp <= 0)
         {
-            Destroy(gameObject);
+            getDestroy(true);
         }
     }
 
@@ -47,7 +73,7 @@ public class Enemy : MonoBehaviour
 
     protected void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        getDestroy();
     }
     private void hitAlphaAction()
     {

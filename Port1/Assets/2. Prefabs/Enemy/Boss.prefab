@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 20
+  enemyType: 1
 --- !u!212 &6861640694787520727
 SpriteRenderer:
   m_ObjectHideFlags: 0

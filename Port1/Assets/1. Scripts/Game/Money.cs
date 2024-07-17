@@ -5,8 +5,9 @@ using UnityEngine;
 public enum eMoneyType
 {
     Coin = 1,
-    Ruby = 3,
-    Diamond = 5,
+    Ruby = 10,
+    Diamond = 20,
+    Emerald = 30,
 }
 
 public class Money : MonoBehaviour

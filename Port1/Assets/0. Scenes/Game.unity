@@ -123,6 +123,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &13988172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 13988173}
+  - component: {fileID: 13988174}
+  m_Layer: 0
+  m_Name: MoneyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &13988173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13988172}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 329216936}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &13988174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13988172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a500f4c8c9eca134aa6c0cfa200866f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dynamic: {fileID: 0}
+  coin: {fileID: 3336461578492051821, guid: 3d2f196f13d90fd488d6ca73930f24ff, type: 3}
+  ruby: {fileID: 3972965003895014502, guid: 186f637fd1051364aa6320d93adb8ce3, type: 3}
+  diamond: {fileID: 3813526381462600904, guid: 4bd9407244f493640b05ea4a583a93d8, type: 3}
+  emerald: {fileID: 3072444004821656190, guid: 26e6670c00fd57744b4a2300b067a3f0, type: 3}
 --- !u!1 &84905310
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +625,8 @@ Transform:
   m_Children:
   - {fileID: 573259123}
   - {fileID: 1065328991}
+  - {fileID: 13988173}
+  - {fileID: 1296478549}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2254,7 +2305,7 @@ MonoBehaviour:
   dynamic: {fileID: 884126236}
   shotPos: {fileID: 674659411}
   speed: 6
-  shotDelay: 0.15
+  shotDelay: 0.1
 --- !u!1 &1235104563
 GameObject:
   m_ObjectHideFlags: 0
@@ -2558,6 +2609,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1296478548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1296478549}
+  - component: {fileID: 1296478550}
+  m_Layer: 0
+  m_Name: EffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1296478549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296478548}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 329216936}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1296478550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296478548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f5824d5596e474e92fe83287eb2cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion1: {fileID: 2382008200039887546, guid: 892e1eb60fd972b4c9cdc6fa9fc4ea56, type: 3}
+  dynamic: {fileID: 884126236}
 --- !u!1 &1375539686
 GameObject:
   m_ObjectHideFlags: 0
