@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     public bool GameStarted = false;
     public bool GamePaused = false;
+    public bool IsGameOver = false;
     public bool isBossStage = false;
 
     public float GameTimer => gameTimer;
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     private void waveCheckAction()
     {
-        if (spawnedMeter < meter)
+        if (spawnedMeter < meter && !IsGameOver)
         {
             float between = meter - spawnedMeter;
             if (between >= spawnPerMeter)
@@ -132,6 +133,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+        IsGameOver = false;
         GameStarted = true;
         gameTimer = 0;
         meter = 0;
@@ -160,7 +162,7 @@ public class GameManager : MonoBehaviour
 
     private void timerAction()
     {
-        if (GameStarted)
+        if (GameStarted && !IsGameOver)
         {
 
             if (isBossStage == false)
@@ -188,6 +190,12 @@ public class GameManager : MonoBehaviour
     public void BackToLobby()
     {
         SceneManager.LoadScene("Lobby");
+    }
+
+    public void RetryGame()
+    {
+        GameStart();
+        SceneManager.LoadScene("Game");
     }
 
 

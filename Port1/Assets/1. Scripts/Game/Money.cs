@@ -23,7 +23,7 @@ public class Money : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !gameManager.IsGameOver)
         {
             gameManager.GetMoney(transform, moneyType);
         }

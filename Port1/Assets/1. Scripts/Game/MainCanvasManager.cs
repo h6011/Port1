@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class MainCanvasManager : MonoBehaviour
 {
+    public static MainCanvasManager Instance;
+
     GameManager gameManager;
     PlayerController playerController;
 
@@ -17,8 +19,20 @@ public class MainCanvasManager : MonoBehaviour
 
     [Header("Pase UI Button")]
     [SerializeField] Button resumeBtn;
-    [SerializeField] Button backBtn;
     [SerializeField] Button exitGameBtn;
+    [SerializeField] Button retryGameBtn;
+    [SerializeField] Button registerBtn;
+
+    [Header("GameOver Screen UI")]
+    [SerializeField] TMP_Text scoreTitle;
+    [SerializeField] TMP_Text meterTitle;
+    [SerializeField] TMP_Text moneyTitle;
+
+    [Header("InputField")]
+    [SerializeField] TMP_InputField nameInputField;
+
+    [Header("List")]
+    [SerializeField] List<Button> listBackBtn;
 
     private void Awake()
     {
@@ -26,6 +40,17 @@ public class MainCanvasManager : MonoBehaviour
         {
             SceneManager.LoadScene("Lobby");
         }
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+
     }
 
     private void Start()
@@ -35,6 +60,7 @@ public class MainCanvasManager : MonoBehaviour
 
         SetVisibleUIFromName("InGame", true);
         SetVisibleUIFromName("Pause", false);
+        SetVisibleUIFromName("GameOver", false);
         ClickActions();
         gameManager.UnpauseGame();
         gameManager.GameStart();
@@ -53,12 +79,25 @@ public class MainCanvasManager : MonoBehaviour
             ToggleVisibleUIFromName("Pause");
         });
 
-        Tool.AddListenerToBtn(backBtn, () => {
-            gameManager.BackToLobby();
+        int count1 = listBackBtn.Count;
+        for (int i = 0; i < count1; i++)
+        {
+            Button backBtn = listBackBtn[i];
+            Tool.AddListenerToBtn(backBtn, () => {
+                gameManager.BackToLobby();
+            });
+        }
+
+        Tool.AddListenerToBtn(retryGameBtn, () => {
+            gameManager.RetryGame();
         });
 
         Tool.AddListenerToBtn(exitGameBtn, () => {
             gameManager.GameExit();
+        });
+
+        Tool.AddListenerToBtn(registerBtn, () => {
+            
         });
 
     }
@@ -66,7 +105,7 @@ public class MainCanvasManager : MonoBehaviour
     private void pauseUIAction()
     {
         KeyCode pauseKeyCode = playerController.GetKeySettings().pauseKey;
-        if (Input.GetKeyDown(pauseKeyCode))
+        if (Input.GetKeyDown(pauseKeyCode) && !gameManager.IsGameOver)
         {
             bool _bool = GetVisibleUIFromName("Pause");
             if (_bool)
@@ -90,6 +129,13 @@ public class MainCanvasManager : MonoBehaviour
         coinText.text = gameManager.Money.ToString();
         ScoreText.text = gameManager.Score.ToString();
         MeterText.text = $"{(int)gameManager.Meter}M";
+    }
+
+    public void SetGameOverScreen()
+    {
+        scoreTitle.text = $"Score: {gameManager.Score}";
+        meterTitle.text = $"{(int)gameManager.Meter}M";
+        moneyTitle.text = $"{gameManager.Money}";
     }
 
     

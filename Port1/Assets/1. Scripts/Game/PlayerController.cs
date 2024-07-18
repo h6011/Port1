@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     GameManager gameManager;
     EffectManager effectManager;
+    MainCanvasManager mainCanvasManager;
 
     Vector2 moveDir;
 
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviour
 
         gameManager = GameManager.Instance;
         effectManager = EffectManager.Instance;
+        mainCanvasManager = MainCanvasManager.Instance;
     }
 
     private void Update()
@@ -148,10 +150,14 @@ public class PlayerController : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
+        mainCanvasManager.SetVisibleUIFromName("GameOver", true);
+        mainCanvasManager.SetGameOverScreen();
     }
 
     IEnumerator whenDeadActionCor()
     {
+        float _Time = 2f;
+        float _Timer = 0;
 
         Color _color = spriteRenderer.color;
         _color.a = 1f;
@@ -161,15 +167,15 @@ public class PlayerController : MonoBehaviour
         {
             float unScaledDeltaTime = Time.unscaledDeltaTime;
 
-            float _rotateAmount = 5f * unScaledDeltaTime;
+            _Timer += unScaledDeltaTime / _Time;
+
+            float _rotateAmount = 100f * unScaledDeltaTime;
 
             transform.rotation *= Quaternion.Euler(0, 0, _rotateAmount);
 
-            transform.localScale -= new Vector3(unScaledDeltaTime, unScaledDeltaTime);
+            transform.localScale = new Vector3((1 - _Timer), (1 - _Timer));
 
-            transform.localScale = new Vector3(Mathf.Clamp01(transform.localScale.x), Mathf.Clamp01(transform.localScale.y));
-
-            if (transform.localScale.x <= 0)
+            if (_Timer >= 1)
             {
                 break;
             }
@@ -184,6 +190,7 @@ public class PlayerController : MonoBehaviour
 
     private void whenDeadAction()
     {
+        gameManager.IsGameOver = true;
         StartCoroutine(whenDeadActionCor());
     }
 
