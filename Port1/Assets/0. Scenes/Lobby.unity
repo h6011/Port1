@@ -2504,6 +2504,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1369809e06355b245bbf0048c1c11a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTypeMoneySettings:
+  - enemyType: 0
+    Coin:
+      percentage: 100
+      randomMin: 2
+      randomMax: 5
+    Ruby:
+      percentage: 30
+      randomMin: 2
+      randomMax: 4
+    Diamond:
+      percentage: 10
+      randomMin: 1
+      randomMax: 3
+    Emerald:
+      percentage: 3
+      randomMin: 1
+      randomMax: 2
+  - enemyType: 1
+    Coin:
+      percentage: 100
+      randomMin: 12
+      randomMax: 26
+    Ruby:
+      percentage: 100
+      randomMin: 6
+      randomMax: 10
+    Diamond:
+      percentage: 70
+      randomMin: 4
+      randomMax: 8
+    Emerald:
+      percentage: 40
+      randomMin: 3
+      randomMax: 6
 --- !u!4 &1530480549
 Transform:
   m_ObjectHideFlags: 0

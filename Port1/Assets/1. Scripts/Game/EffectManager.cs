@@ -30,11 +30,17 @@ public class EffectManager : MonoBehaviour
     }
 
 
-    public void CreateEffect(eEffectType effectType, Vector3 position)
+    public void CreateEffect(eEffectType effectType, Vector3 position, float _size)
     {
         if (effectType == eEffectType.Explosion1)
         {
             GameObject newEffect = Instantiate(explosion1, position, Quaternion.identity, dynamic);
+            SpriteRenderer sprite = newEffect.GetComponent<SpriteRenderer>();
+
+            float _basicSize = sprite.sprite.rect.width;
+            float ratio = _size / _basicSize;
+
+            newEffect.transform.localScale = new Vector3(ratio, ratio);
         }
     }
 

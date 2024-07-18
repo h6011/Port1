@@ -14,6 +14,11 @@ public class Boss : Enemy
 
 
 
+
+
+    
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -28,11 +33,6 @@ public class Boss : Enemy
 
         startSpawnMoveAction();
     }
-
-    //protected override void Start()
-    //{
-    //    base.Start();
-    //}
 
 
 

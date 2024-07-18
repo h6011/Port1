@@ -9,6 +9,11 @@ public class BasicEnemy : Enemy
     [SerializeField] float speed = 4f;
 
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -20,6 +25,8 @@ public class BasicEnemy : Enemy
     {
         transform.Translate(-transform.up * speed * Time.deltaTime);
     }
+
+    
 
 
 }

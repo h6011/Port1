@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3254161442313185631}
   - component: {fileID: 1703967411105001529}
   - component: {fileID: 8621477939063832977}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Diamond
-  m_TagString: Untagged
+  m_TagString: Money
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

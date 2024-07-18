@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 8292393568183030952}
   - component: {fileID: -1404524724751409541}
   - component: {fileID: -9125724790119913084}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Emerald
-  m_TagString: Untagged
+  m_TagString: Money
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

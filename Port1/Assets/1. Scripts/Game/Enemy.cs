@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     protected EnemyManager enemyManager;
     protected GameManager gameManager;
+    protected PlayerController playerController;
 
     [Header("Enemy Stat")]
     [SerializeField] protected int hp;
@@ -16,37 +17,75 @@ public class Enemy : MonoBehaviour
     private float hitSpriteTime = 0.05f;
 
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     [SerializeField] eEnemyType enemyType;
     public bool isUpgraded = false;
+    bool isDead = false;
 
-    //protected virtual void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Bullet"))
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && !playerController.isInvincibility())
+        {
+            playerController.GetDamage(1);
+            GetDamage(1);
+        }
+    }
 
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
-        hp = maxHp;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     protected virtual void Start()
     {
         enemyManager = EnemyManager.Instance;
         gameManager = GameManager.Instance;
+        playerController = PlayerController.Instance;
+
+        fillHp();
+        checkColorChange();
+    }
+
+    private void fillHp()
+    {
+        if (isUpgraded)
+        {
+            maxHp *= 2;
+        }
+        hp = maxHp;
+    }
+
+    private void checkColorChange()
+    {
+        if (isUpgraded)
+        {
+            Color _color = spriteRenderer.color;
+            _color.g = 0.5f;
+            _color.b = 0.5f;
+            spriteRenderer.color = _color;
+        }
+    }
+
+
+    public void Upgrade()
+    {
+        isUpgraded = true;
     }
 
 
     public void getDestroy(bool ByPlayer = false)
     {
+        if (isDead) return;
+        isDead = true;
         if (ByPlayer)
         {
             enemyManager.WhenEnemyDied(transform, enemyType, isUpgraded);
         }
+
         if (enemyType == eEnemyType.Boss)
         {
             gameManager.isBossStage = false;

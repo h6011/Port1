@@ -61,6 +61,10 @@ public class GameManager : MonoBehaviour
         //checkEnemyMng();
         timerAction();
         waveCheckAction();
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    Time.timeScale = 4;
+        //}
     }
 
     private void checkEnemyMng()
