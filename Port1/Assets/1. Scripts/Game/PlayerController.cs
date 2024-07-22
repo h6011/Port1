@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     GameManager gameManager;
     EffectManager effectManager;
     MainCanvasManager mainCanvasManager;
+    RankingManager rankingManager;
 
     Vector2 moveDir;
 
@@ -62,10 +63,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int hp;
     [SerializeField] int maxHp = 3;
 
+    /// <summary>
+    /// 플레이어의 현재 체력
+    /// </summary>
+    public int Hp => hp;
+
     private float shotTimer;
 
     [SerializeField] bool isDead = false;
 
+    /// <summary>
+    /// 플레이어가 죽었는지
+    /// </summary>
     public bool IsDead => isDead;
 
     [Header("Invincibility")]
@@ -108,6 +117,7 @@ public class PlayerController : MonoBehaviour
         gameManager = GameManager.Instance;
         effectManager = EffectManager.Instance;
         mainCanvasManager = MainCanvasManager.Instance;
+        rankingManager = RankingManager.Instance;
     }
 
     private void Update()
@@ -137,11 +147,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 플레이어의 무적 여부
+    /// </summary>
+    /// <returns></returns>
     public bool isInvincibility()
     {
         return InvincibilityTimer > 0;
     }
 
+    /// <summary>
+    /// 체력을 최대체력으로 수치조정
+    /// </summary>
     private void fillHp()
     {
         hp = maxHp;
@@ -154,8 +171,20 @@ public class PlayerController : MonoBehaviour
         mainCanvasManager.SetGameOverScreen();
     }
 
+    private void saveDataToRanking(string _name, int _score, int _meter)
+    {
+        RankingManager.RankInfo _rankInfo = new RankingManager.RankInfo();
+        _rankInfo.name = _name;
+        _rankInfo.score = _score;
+        _rankInfo.meter = _meter;
+
+        rankingManager.AddDataToRank(_rankInfo);
+    }
+
+
     IEnumerator whenDeadActionCor()
     {
+        Debug.Log("whenDeadActionCor");
         float _Time = 2f;
         float _Timer = 0;
 
@@ -172,7 +201,7 @@ public class PlayerController : MonoBehaviour
             float _rotateAmount = 100f * unScaledDeltaTime;
 
             transform.rotation *= Quaternion.Euler(0, 0, _rotateAmount);
-
+            Debug.Log(transform.rotation.ToString());
             transform.localScale = new Vector3((1 - _Timer), (1 - _Timer));
 
             if (_Timer >= 1)
@@ -194,6 +223,10 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(whenDeadActionCor());
     }
 
+    /// <summary>
+    /// 플레이어가 데미지를 받았을떄 호출
+    /// </summary>
+    /// <param name="_damage">데미지 양</param>
     public void GetDamage(int _damage)
     {
         _damage = Mathf.Clamp(_damage, 0, 999);
@@ -226,6 +259,9 @@ public class PlayerController : MonoBehaviour
         InvincibilityTimer = Mathf.Clamp(InvincibilityTimer, 0, InvincibilityTime);
     }
 
+    /// <summary>
+    /// 총알 발사
+    /// </summary>
     private void shot()
     {
         if (isDead) return;
@@ -281,6 +317,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 플레이어의 키 설정 가져오기
+    /// </summary>
+    /// <returns>플레이어의 키 설정</returns>
     public PlayerSettings.PlayerKeySettings GetKeySettings()
     {
         return playerSettings.playerKeySettings;

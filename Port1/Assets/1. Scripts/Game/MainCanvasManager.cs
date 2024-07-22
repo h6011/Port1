@@ -34,6 +34,12 @@ public class MainCanvasManager : MonoBehaviour
     [Header("List")]
     [SerializeField] List<Button> listBackBtn;
 
+    [Header("Hp")]
+    [SerializeField] Transform hpImg1;
+    [SerializeField] Transform hpImg2;
+    [SerializeField] Transform hpImg3;
+
+
     private void Awake()
     {
         if (Tool.isLoadMainScene == false)
@@ -70,6 +76,7 @@ public class MainCanvasManager : MonoBehaviour
     {
         displayGameUIAction();
         pauseUIAction();
+        hpDisplayAction();
     }
 
     private void ClickActions()
@@ -102,6 +109,33 @@ public class MainCanvasManager : MonoBehaviour
 
     }
 
+    private void hpDisplayAction()
+    {
+        if (playerController.Hp >= 3)
+        {
+            hpImg1.gameObject.SetActive(true);
+            hpImg2.gameObject.SetActive(true);
+            hpImg3.gameObject.SetActive(true);
+        }
+        else if (playerController.Hp == 2)
+        {
+            hpImg1.gameObject.SetActive(true);
+            hpImg2.gameObject.SetActive(true);
+            hpImg3.gameObject.SetActive(false);
+        }
+        else if (playerController.Hp == 1)
+        {
+            hpImg1.gameObject.SetActive(true);
+            hpImg2.gameObject.SetActive(false);
+            hpImg3.gameObject.SetActive(false);
+        }
+        else
+        {
+            hpImg1.gameObject.SetActive(false);
+            hpImg2.gameObject.SetActive(false);
+            hpImg3.gameObject.SetActive(false);
+        }
+    }
     private void pauseUIAction()
     {
         KeyCode pauseKeyCode = playerController.GetKeySettings().pauseKey;
