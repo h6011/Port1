@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public int Hp => hp;
 
+    public Transform Dynamic => dynamic;
+
     private float shotTimer;
 
     [SerializeField] bool isDead = false;
@@ -171,15 +173,7 @@ public class PlayerController : MonoBehaviour
         mainCanvasManager.SetGameOverScreen();
     }
 
-    private void saveDataToRanking(string _name, int _score, int _meter)
-    {
-        RankingManager.RankInfo _rankInfo = new RankingManager.RankInfo();
-        _rankInfo.name = _name;
-        _rankInfo.score = _score;
-        _rankInfo.meter = _meter;
-
-        rankingManager.AddDataToRank(_rankInfo);
-    }
+    
 
 
     IEnumerator whenDeadActionCor()
@@ -201,7 +195,6 @@ public class PlayerController : MonoBehaviour
             float _rotateAmount = 100f * unScaledDeltaTime;
 
             transform.rotation *= Quaternion.Euler(0, 0, _rotateAmount);
-            Debug.Log(transform.rotation.ToString());
             transform.localScale = new Vector3((1 - _Timer), (1 - _Timer));
 
             if (_Timer >= 1)

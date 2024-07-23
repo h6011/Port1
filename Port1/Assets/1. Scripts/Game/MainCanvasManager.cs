@@ -10,6 +10,7 @@ public class MainCanvasManager : MonoBehaviour
     public static MainCanvasManager Instance;
 
     GameManager gameManager;
+    RankingManager rankingManager;
     PlayerController playerController;
 
     [Header("Game UI Text")]
@@ -62,6 +63,8 @@ public class MainCanvasManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+        rankingManager = RankingManager.Instance;
+
         playerController = PlayerController.Instance;
 
         SetVisibleUIFromName("InGame", true);
@@ -104,7 +107,14 @@ public class MainCanvasManager : MonoBehaviour
         });
 
         Tool.AddListenerToBtn(registerBtn, () => {
-            
+            if (string.IsNullOrEmpty(nameInputField.text))
+            {
+                return;
+            }
+
+            rankingManager.SaveDataToRanking(nameInputField.text, gameManager.Score, (int)gameManager.Meter);
+
+            gameManager.BackToLobby();
         });
 
     }

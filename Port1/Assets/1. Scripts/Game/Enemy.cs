@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
         animationAction();
     }
 
-    protected void OnBecameInvisible()
+    protected virtual void OnBecameInvisible()
     {
         getDestroy();
     }

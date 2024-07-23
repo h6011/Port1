@@ -26,7 +26,8 @@ public class Bullet : MonoBehaviour
         {
             if (collision.CompareTag("Player"))
             {
-
+                PlayerController playerController = collision.GetComponent<PlayerController>();
+                playerController.GetDamage(damage);
                 destroySelf();
             }
         }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +9,15 @@ using UnityEngine.UI;
 public class LobbyMainCanvasManger : MonoBehaviour
 {
     GameManager gameManager;
+    RankingManager rankingManager;
+
+
+    [Header("Ranking")]
+    [SerializeField] GameObject rankingItemPrefab;
+
+    [SerializeField] Transform rankingContenTrs;
+
+
 
 
     [Header("Button")]
@@ -27,6 +36,8 @@ public class LobbyMainCanvasManger : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+        rankingManager = RankingManager.Instance;
+
         buttonClickAction();
         autoBackBtnAction();
         visibleOnlyUI("Main");
@@ -97,6 +108,9 @@ public class LobbyMainCanvasManger : MonoBehaviour
         });
         addListenerToBtn(rankingBtn, () => {
             visibleOnlyUI("Ranking");
+
+            resetRanking();
+
         });
         addListenerToBtn(settingsBtn, () => {
             visibleOnlyUI("Settings");
@@ -105,6 +119,41 @@ public class LobbyMainCanvasManger : MonoBehaviour
             gameManager.GameExit();
         });
     }
+
+    private void clearRanking()
+    {
+        int count = rankingContenTrs.childCount;
+        for (int i = 0; i < count; i++)
+        {
+            Transform child = rankingContenTrs.GetChild(i);
+            Destroy(child.gameObject);
+        }
+    }
+
+    private void displayRanking()
+    {
+        List<RankingManager.RankInfo> currentRanks = rankingManager.GetRanking();
+        int count = currentRanks.Count;
+
+        for (int i = 0; i < count; i++)
+        {
+            RankingManager.RankInfo _rankInfo = currentRanks[i];
+
+            GameObject newRankingPrefab = Instantiate(rankingItemPrefab, rankingContenTrs);
+            TMPro.TMP_Text text = newRankingPrefab.GetComponent<TMPro.TMP_Text>();
+            text.text = $"{_rankInfo.name} - {_rankInfo.score}";
+        }
+
+
+    }
+
+    private void resetRanking()
+    {
+        clearRanking();
+        displayRanking();
+    }
+
+
 
 
 
