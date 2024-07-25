@@ -133,7 +133,7 @@ public class Boss : Enemy
         isAttacking = true;
 
 
-        eBossAttackType pickedType = (eBossAttackType)Random.Range(0, getEnumCount() + 1);
+        eBossAttackType pickedType = (eBossAttackType)Random.Range(0, getEnumCount());
 
         Debug.Log("pickedType: " + pickedType);
 
@@ -145,12 +145,12 @@ public class Boss : Enemy
         {
             StartCoroutine(shotgunAttack());
         }
-        //else if (pickedType == eBossAttackType.Bomb)
-        //{
-        //    isAttacking = false;
-        //}
+        else if (pickedType == eBossAttackType.Bomb)
+        {
+            isAttacking = false;
+        }
 
-        //isAttacking = false;
+        isAttacking = false;
 
     }
 
