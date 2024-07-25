@@ -27,8 +27,11 @@ public class Bullet : MonoBehaviour
             if (collision.CompareTag("Player"))
             {
                 PlayerController playerController = collision.GetComponent<PlayerController>();
-                playerController.GetDamage(damage);
-                destroySelf();
+                bool isSuccess = playerController.TryDamage(damage);
+                if (isSuccess)
+                {
+                    destroySelf();
+                }
             }
         }
     }
@@ -46,7 +49,7 @@ public class Bullet : MonoBehaviour
 
     private void moveAction()
     {
-        transform.Translate(transform.up * bulletSpeed * Time.deltaTime);
+        transform.Translate(Vector3.up * bulletSpeed * Time.deltaTime);
     }
 
     private void OnBecameInvisible()

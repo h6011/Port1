@@ -46,6 +46,13 @@ public class RankingManager : MonoBehaviour
     /// </summary>
     private List<RankInfo> checkisFixedRank(List<RankInfo> ranks)
     {
+        int count = ranks.Count;
+        if (count > RankCount)
+        {
+            ranks.RemoveRange(RankCount + 1, count - RankCount);
+        }
+
+
         //int count = ranks.Count;
         //if (count > RankCount)
         //{
@@ -53,7 +60,7 @@ public class RankingManager : MonoBehaviour
         //}
         //for (int iNum = 0; iNum < count; iNum++)
         //{
-             
+
         //}
         return ranks;
     }
@@ -65,7 +72,6 @@ public class RankingManager : MonoBehaviour
 
         string fileText = getRankFileText();
 
-        Debug.Log("fileText: " + fileText);
 
         if (fileText == string.Empty)
         {
@@ -77,12 +83,10 @@ public class RankingManager : MonoBehaviour
             }
 
             SetRanking(ranks);
-            print(1);
         }
         else
         {
             ranks = JsonConvert.DeserializeObject<List<RankInfo>>(fileText);
-            print(2);
         }
 
 
@@ -112,46 +116,47 @@ public class RankingManager : MonoBehaviour
         List<RankInfo> currentRanks = GetRanking();
         int count = currentRanks.Count;
 
-        Debug.Log(count);
+        //Debug.Log(count);
 
-        Debug.LogWarning(currentRanks[count - 1].score);
-        Debug.LogWarning(_rankInfo.score);
+        //Debug.LogWarning(currentRanks[count - 1].score);
+        //Debug.LogWarning(_rankInfo.score);
 
         if (_rankInfo.score > currentRanks[count - 1].score) // 기록 될수 있는지
         {
-            for (int i = count-1; i >= 0; i--) // 1등 부터 천천히 확인
+            for (int i = 0; i < count - 1; i++) // 1등 부터 천천히 확인
             {
                 if (_rankInfo.score > currentRanks[i].score) // 랭크인 할수 있는지
                 {
-                    Debug.Log("THIS : "+i);
-                    List<RankInfo> saveWillPullInfos = null;//= new List<RankInfo>(count - 1);
-                    // 그떄 시점 부터 끝까지 기록
-                    for (int j = i; j < count-1; j++)
-                    {
-                        saveWillPullInfos.Add(currentRanks[i]);
-                    }
+                    currentRanks.Insert(i, _rankInfo);
+                    currentRanks.RemoveAt(currentRanks.Count - 1);
 
-                    // 그때 시점 부터 끝까지 지움 (공간 확보)
-                    currentRanks.RemoveRange(i, count - 1);
+                    //Debug.Log("THIS : "+i);
+                    //List<RankInfo> saveWillPullInfos = new List<RankInfo>();
+                    //// 그떄 시점 부터 끝까지 기록
+                    //for (int j = i; j <= count-1; j++)
+                    //{
+                    //    saveWillPullInfos.Add(currentRanks[j]);
+                    //}
 
-                    saveWillPullInfos.RemoveAt(saveWillPullInfos.Count - 1);
+                    //// 그때 시점 부터 끝까지 지움 (공간 확보)
+                    //currentRanks.RemoveRange(i, (count - i) );
 
-                    // 랭크인
-                    currentRanks.Add(_rankInfo);
+                    //saveWillPullInfos.RemoveAt(saveWillPullInfos.Count - 1);
+
+                    //// 랭크인
+                    //currentRanks.Add(_rankInfo);
 
 
 
-                    // 이제 한칸 뒤로 넘긴거 그대로 다시 넣음
+                    //// 이제 한칸 뒤로 넘긴거 그대로 다시 넣음
 
-                    int saveWillPullInfosCount = saveWillPullInfos.Count;
-                    for (int k = 0; k < saveWillPullInfosCount; k++)
-                    {
-                        currentRanks.Add(saveWillPullInfos[k]);
-                    }
+                    //int saveWillPullInfosCount = saveWillPullInfos.Count;
+                    //for (int k = 0; k < saveWillPullInfosCount; k++)
+                    //{
+                    //    currentRanks.Add(saveWillPullInfos[k]);
+                    //}
 
                     SetRanking(currentRanks);
-
-                    print(1);
 
                     return;
                 }

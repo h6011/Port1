@@ -217,6 +217,21 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
+    /// 데미지 주는 시도하기
+    /// </summary>
+    /// <param name="_damage"></param>
+    /// <returns>성공적으로 데미지를 넣었는지</returns>
+    public bool TryDamage(int _damage)
+    {
+        if (!isInvincibility())
+        {
+            GetDamage(_damage);
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
     /// 플레이어가 데미지를 받았을떄 호출
     /// </summary>
     /// <param name="_damage">데미지 양</param>

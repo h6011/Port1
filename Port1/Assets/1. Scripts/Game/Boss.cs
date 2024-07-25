@@ -73,16 +73,17 @@ public class Boss : Enemy
     IEnumerator rifleAttack()
     {
         int count = Random.Range(10, 15 + 1);
+        GameObject _prefab = prefabs.BossRifleBullet;
 
         for (int iNum = 0; iNum < count; iNum++)
         {
-            int shotposTrsCount = shotposTrs.Count;
+            Vector3 _targetPos = playerController.transform.position;
 
-            for (int i = 0; i < shotposTrsCount; i++)
-            {
-                GameObject newBullet = Instantiate(prefabs.BossRifleBullet, shotposTrs[i].position, Quaternion.Euler(0, 0, 180), playerController.Dynamic);
-                Bullet bulletScript = newBullet.GetComponent<Bullet>();
-            }
+
+            Vector3 _shotPos = shotposTrs[0].position;
+            float angle = Quaternion.FromToRotation(_prefab.transform.up, _targetPos - _shotPos).eulerAngles.z;
+            GameObject newBullet = Instantiate(_prefab, _shotPos, Quaternion.Euler(0, 0, angle), playerController.Dynamic);
+            Bullet bulletScript = newBullet.GetComponent<Bullet>();
 
             yield return new WaitForSeconds(0.1f);
         }
@@ -93,6 +94,26 @@ public class Boss : Enemy
 
     IEnumerator shotgunAttack()
     {
+        int bulletCount = Random.Range(8, 12 + 1);
+        int bulletAngle = 60;
+
+        Vector3 _targetPos = playerController.transform.position;
+
+        GameObject _prefab = prefabs.BossShotgunBullet;
+
+        for (int iNum = 0; iNum < bulletCount; iNum++)
+        {
+            Vector3 _shotPos = shotposTrs[0].position;
+            float angle = Quaternion.FromToRotation(_prefab.transform.up, _targetPos - _shotPos).eulerAngles.z;
+
+            angle += (bulletAngle / bulletCount) * (iNum + 1) 
+                + (-bulletAngle / 2); // 이걸 안하면 이상함
+
+            GameObject newBullet = Instantiate(_prefab, _shotPos, Quaternion.Euler(0, 0, angle), playerController.Dynamic);
+
+        }
+
+        isAttacking = false;
 
         yield return null;
     }
@@ -112,7 +133,7 @@ public class Boss : Enemy
         isAttacking = true;
 
 
-        eBossAttackType pickedType = eBossAttackType.Rifle;//(eBossAttackType)Random.Range(0, getEnumCount() + 1);
+        eBossAttackType pickedType = (eBossAttackType)Random.Range(0, getEnumCount() + 1);
 
         Debug.Log("pickedType: " + pickedType);
 
@@ -122,12 +143,12 @@ public class Boss : Enemy
         }
         else if (pickedType == eBossAttackType.Shotgun)
         {
-            isAttacking = false;
+            StartCoroutine(shotgunAttack());
         }
-        else if (pickedType == eBossAttackType.Bomb)
-        {
-            isAttacking = false;
-        }
+        //else if (pickedType == eBossAttackType.Bomb)
+        //{
+        //    isAttacking = false;
+        //}
 
         //isAttacking = false;
 

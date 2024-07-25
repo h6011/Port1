@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1257349341708502472}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShotPos3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1206444410231937733}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShotPos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 2354516644169250008}
   - component: {fileID: 5491426962967930824}
   - component: {fileID: 5200249715255985743}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -95,6 +95,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1013092668382951904}
   - {fileID: 4931478300547498527}
   - {fileID: 1206444410231937733}
   - {fileID: 1257349341708502472}
@@ -123,6 +124,7 @@ MonoBehaviour:
     BossShotgunBullet: {fileID: 226504794871931677, guid: d3685b605736d08448a577ad8339ab93, type: 3}
     BossBombBullet: {fileID: 4461059342476830297, guid: 04037a43415d5e8459b6a6f42c8f7f40, type: 3}
   shotposTrs:
+  - {fileID: 1013092668382951904}
   - {fileID: 4931478300547498527}
   - {fileID: 1206444410231937733}
   - {fileID: 1257349341708502472}
@@ -272,7 +274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4931478300547498527}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShotPos1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,6 +296,37 @@ Transform:
   m_Father: {fileID: 4867147125637711098}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6596917780708956479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1013092668382951904}
+  m_Layer: 8
+  m_Name: ShotPos0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1013092668382951904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6596917780708956479}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4867147125637711098}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7172619744205874957
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5101486667686432615}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShotPos4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

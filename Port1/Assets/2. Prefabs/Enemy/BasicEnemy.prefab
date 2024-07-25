@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3170456704307540085}
   - component: {fileID: 625939796182734746}
   - component: {fileID: 3781977645558308830}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BasicEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -48,7 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521df96037f62e14280efb96bb423981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
   maxHp: 2
+  enemyType: 0
+  isUpgraded: 0
   speed: 4
 --- !u!212 &2619640867701462407
 SpriteRenderer:

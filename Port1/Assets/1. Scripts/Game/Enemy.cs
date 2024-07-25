@@ -27,10 +27,13 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !playerController.isInvincibility())
+        if (collision.CompareTag("Player"))
         {
-            playerController.GetDamage(1);
-            GetDamage(1);
+            bool isSuccess = playerController.TryDamage(1);
+            if (isSuccess)
+            {
+                GetDamage(1);
+            }
         }
     }
 
