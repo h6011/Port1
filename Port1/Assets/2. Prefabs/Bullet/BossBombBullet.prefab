@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOwnerPlayer: 0
   bulletSpeed: 5
+  bulletType: 2
 --- !u!212 &2177878897134477903
 SpriteRenderer:
   m_ObjectHideFlags: 0

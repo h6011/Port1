@@ -298,6 +298,9 @@ MonoBehaviour:
   spawnedMeter: 0
   spawnPerMeter: 1
   bossSpawnMeter: 15
+  minMeteorMeter: 15
+  defaultMeteorTime: 8
+  increaseMeteorAmountPerMeter: 0.05
 --- !u!4 &30102987
 Transform:
   m_ObjectHideFlags: 0

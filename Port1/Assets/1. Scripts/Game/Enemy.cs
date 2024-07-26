@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     protected EnemyManager enemyManager;
     protected GameManager gameManager;
     protected PlayerController playerController;
+    protected BulletManager bulletManager;
 
     [Header("Enemy Stat")]
     [SerializeField] protected int hp;
@@ -48,6 +49,7 @@ public class Enemy : MonoBehaviour
         enemyManager = EnemyManager.Instance;
         gameManager = GameManager.Instance;
         playerController = PlayerController.Instance;
+        bulletManager = BulletManager.Instance;
 
         fillHp();
         checkColorChange();

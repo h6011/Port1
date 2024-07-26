@@ -11,32 +11,43 @@ public class GameManager : MonoBehaviour
 
     private EnemyManager enemyManager;
     public EnemyManager EnemyManager { set => enemyManager = value; }
+    private MeteorManager meteorManager;
+    public MeteorManager MeteorManager { set => meteorManager = value; }
 
-
-    [Header("Game Static Stat")]
-
-
-
-    [Header("Game Stats")]
+    [Header("Current Game Stat")]
     [SerializeField] private float gameTimer = 0f;
     [SerializeField] private float meter = 0f;
     [SerializeField] private int score = 0;
     [SerializeField] private int money = 0;
 
+    [Header("Bool")]
     public bool GameStarted = false;
     public bool GamePaused = false;
     public bool IsGameOver = false;
     public bool isBossStage = false;
 
+    
     public float GameTimer => gameTimer;
     public float Meter => meter;
     public int Score => score;
     public int Money => money;
 
+    [Header("Meter")]
     [SerializeField] private float spawnedMeter;
     [SerializeField] private float spawnPerMeter = 1;
 
     [SerializeField] private int bossSpawnMeter = 15;
+
+    [Header("Meteor")]
+    [SerializeField] float minMeteorMeter = 10;
+    [SerializeField] float defaultMeteorTime = 4f;
+    [SerializeField] float increaseMeteorAmountPerMeter = 0.1f;
+    //[SerializeField] float maxMeteorTime = 0;
+
+    private float meteorTimer = 0f;
+
+
+
 
     private void Awake()
     {
@@ -62,10 +73,6 @@ public class GameManager : MonoBehaviour
         //checkEnemyMng();
         timerAction();
         waveCheckAction();
-        //if (Input.GetKeyDown(KeyCode.O))
-        //{
-        //    Time.timeScale = 4;
-        //}
     }
 
     private void checkEnemyMng()
@@ -126,7 +133,7 @@ public class GameManager : MonoBehaviour
         }
         else if (enemyType == eEnemyType.Boss)
         {
-            score += 1500;
+            score += 2000;
         }
     }
 
@@ -170,6 +177,22 @@ public class GameManager : MonoBehaviour
                 gameTimer += Time.deltaTime;
 
                 meter += Time.deltaTime / 2f;
+            }
+
+            meteorTimer += Time.deltaTime;
+
+            if (meter >= minMeteorMeter)
+            {
+                float _meter = meter - minMeteorMeter;
+                float currentTime = defaultMeteorTime *  (1 / (increaseMeteorAmountPerMeter * _meter)) ;
+
+                if (meteorTimer >= currentTime)
+                {
+                    meteorTimer = 0f;
+                    Debug.Log("currentTime: " + currentTime);
+                    meteorManager.SpawnMeteor();
+
+                }
             }
 
         }       

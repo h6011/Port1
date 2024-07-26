@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a500f4c8c9eca134aa6c0cfa200866f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dynamic: {fileID: 0}
+  dynamic: {fileID: 884126236}
   coin: {fileID: 3336461578492051821, guid: 3d2f196f13d90fd488d6ca73930f24ff, type: 3}
   ruby: {fileID: 3972965003895014502, guid: 186f637fd1051364aa6320d93adb8ce3, type: 3}
   diamond: {fileID: 3813526381462600904, guid: 4bd9407244f493640b05ea4a583a93d8, type: 3}
@@ -1053,6 +1053,8 @@ Transform:
   - {fileID: 1065328991}
   - {fileID: 13988173}
   - {fileID: 1296478549}
+  - {fileID: 1054125687}
+  - {fileID: 1476288052}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3057,6 +3059,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018772019}
   m_CullTransparentMesh: 1
+--- !u!1 &1054125686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1054125687}
+  - component: {fileID: 1054125688}
+  m_Layer: 0
+  m_Name: BulletManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1054125687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054125686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 329216936}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1054125688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054125686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f36675e3011df5646b4e7c4aa0e63b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+    RifleBullet: {fileID: 1669140091896721891, guid: 4752860e9950f824ab781ed64801a1b7, type: 3}
+    ShotgunBullet: {fileID: 226504794871931677, guid: d3685b605736d08448a577ad8339ab93, type: 3}
+    BombBullet: {fileID: 4461059342476830297, guid: 04037a43415d5e8459b6a6f42c8f7f40, type: 3}
+  dynamic: {fileID: 884126236}
 --- !u!1 &1058327879
 GameObject:
   m_ObjectHideFlags: 0
@@ -3786,7 +3837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1246530028
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4198,6 +4249,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &1476288051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1476288052}
+  - component: {fileID: 1476288053}
+  m_Layer: 0
+  m_Name: MeteorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1476288052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476288051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 329216936}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1476288053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476288051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 924c067ab834b7040a37398d85083af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meteorPrefab: {fileID: 1237183404461907645, guid: c2ed65def9ecabf46ae324f6229abd79, type: 3}
+  enemySpawnPos: {fileID: 1720971831}
+  dynamic: {fileID: 884126236}
+  randomRadius: 2
 --- !u!1 &1515292405
 GameObject:
   m_ObjectHideFlags: 0
