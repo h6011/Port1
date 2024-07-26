@@ -32,13 +32,14 @@ public class MeteorManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(enemySpawnPos.position + Vector3.left * -randomRadius, enemySpawnPos.position + Vector3.right * randomRadius);
+        //Gizmos.DrawLine(enemySpawnPos.position + Vector3.left * -randomRadius, enemySpawnPos.position + Vector3.right * randomRadius);
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.up);
     }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(enemySpawnPos.position + Vector3.left * -randomRadius, enemySpawnPos.position + Vector3.right * randomRadius);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawLine(enemySpawnPos.position + Vector3.left * -randomRadius, enemySpawnPos.position + Vector3.right * randomRadius);
+    //}
 
 
     private void Start()
