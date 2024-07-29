@@ -4296,7 +4296,7 @@ MonoBehaviour:
   meteorPrefab: {fileID: 1237183404461907645, guid: c2ed65def9ecabf46ae324f6229abd79, type: 3}
   enemySpawnPos: {fileID: 1720971831}
   dynamic: {fileID: 884126236}
-  randomRadius: 2
+  randomRadius: 2.5
 --- !u!1 &1515292405
 GameObject:
   m_ObjectHideFlags: 0

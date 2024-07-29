@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float minMeteorMeter = 10;
     [SerializeField] float defaultMeteorTime = 4f;
     [SerializeField] float increaseMeteorAmountPerMeter = 0.1f;
+    [SerializeField] float minMeteorDelay = 0.2f;
     //[SerializeField] float maxMeteorTime = 0;
 
     private float meteorTimer = 0f;
@@ -185,6 +186,7 @@ public class GameManager : MonoBehaviour
             {
                 float _meter = meter - minMeteorMeter;
                 float currentTime = defaultMeteorTime *  (1 / (increaseMeteorAmountPerMeter * _meter)) ;
+                currentTime = Mathf.Clamp(currentTime, minMeteorDelay, 100);
 
                 if (meteorTimer >= currentTime)
                 {
