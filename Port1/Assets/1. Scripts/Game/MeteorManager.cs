@@ -10,6 +10,7 @@ public class MeteorManager : MonoBehaviour
 
     [Header("Prefab")]
     [SerializeField] GameObject meteorPrefab;
+    [SerializeField] GameObject meteorWarningPrefab;
 
     [Header("Trs")]
     [SerializeField] Transform enemySpawnPos;
@@ -36,6 +37,19 @@ public class MeteorManager : MonoBehaviour
         gameManager = GameManager.Instance;
 
         gameManager.MeteorManager = this;
+    }
+
+    public void SpawnMeteorByWarning(float x)
+    {
+        GameObject newMeteor = Instantiate(meteorPrefab, enemySpawnPos.position + new Vector3(x, 0, 0), Quaternion.Euler(0, 0, 180), dynamic);
+
+
+    }
+
+    public void TrySpawnMeteor()
+    {
+        float iRand = Random.Range(-randomRadius, randomRadius);
+        GameObject newMeteorWarning = Instantiate(meteorWarningPrefab, enemySpawnPos.position + new Vector3(iRand, -2f, 0), Quaternion.identity, dynamic);
     }
 
     public void SpawnMeteor()

@@ -192,8 +192,8 @@ public class GameManager : MonoBehaviour
                 {
                     meteorTimer = 0f;
                     Debug.Log("currentTime: " + currentTime);
-                    meteorManager.SpawnMeteor();
-
+                    //meteorManager.SpawnMeteor();
+                    meteorManager.TrySpawnMeteor();
                 }
             }
 
