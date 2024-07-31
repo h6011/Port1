@@ -301,6 +301,7 @@ MonoBehaviour:
   minMeteorMeter: 15
   defaultMeteorTime: 8
   increaseMeteorAmountPerMeter: 0.05
+  minMeteorDelay: 0.25
 --- !u!4 &30102987
 Transform:
   m_ObjectHideFlags: 0
