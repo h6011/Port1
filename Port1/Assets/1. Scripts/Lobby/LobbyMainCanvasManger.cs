@@ -67,9 +67,17 @@ public class LobbyMainCanvasManger : MonoBehaviour
 
         fpsDropdown.AddOptions(fpsList);
 
+        PlayerSettings.ePlayerSettingsFpsType savedFpsType = playerSettingsManager.GetPlayerSettings().fpsType;
+
+        fpsDropdown.SetValueWithoutNotify((int)savedFpsType);
+
+
+
+
+
         fpsDropdown.onValueChanged.AddListener((int call) => {
             PlayerSettings.ePlayerSettingsFpsType selectedFpsType = (PlayerSettings.ePlayerSettingsFpsType)call;
-            gameManager.playerSettings.fpsType = selectedFpsType;
+            playerSettingsManager.ChangeFpsType(selectedFpsType);
             playerSettingsManager.CheckFps();
         });
 
@@ -174,7 +182,14 @@ public class LobbyMainCanvasManger : MonoBehaviour
 
             GameObject newRankingPrefab = Instantiate(rankingItemPrefab, rankingContenTrs);
             TMPro.TMP_Text text = newRankingPrefab.GetComponent<TMPro.TMP_Text>();
-            text.text = $"{_rankInfo.name} - {_rankInfo.score}";
+            if (_rankInfo.name == "")
+            {
+                text.text = $"#{i + 1}";
+            }
+            else
+            {
+                text.text = $"#{i+1} {_rankInfo.name} : {_rankInfo.score}";
+            }
         }
 
 

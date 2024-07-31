@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +17,7 @@ public class RankingManager : MonoBehaviour
 
     public class RankInfo
     {
-        public string name = "someone";
+        public string name = "";
         public int score = -1;
         public int meter = -1;
     }

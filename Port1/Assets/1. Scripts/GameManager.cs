@@ -51,7 +51,9 @@ public class GameManager : MonoBehaviour
     public PlayerSettings playerSettings;
 
 
-
+    private System.Action quitEvent;
+    private bool canApplicationQuit = false;
+    [SerializeField] GameObject wantToQuitUI;
 
     private void Awake()
     {
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GameStarted = false;
+        gameExitInitalAction();
         //enemyManager = EnemyManager.Instance;
     }
 
@@ -227,27 +230,41 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //public void AddListenerToBtn(Button _btn, UnityEngine.Events.UnityAction action)
-    //{
-    //    _btn.onClick.RemoveAllListeners();
-    //    _btn.onClick.AddListener(action);
-    //}
 
-
-
-    private void gameExitKeyAction()
+    private void gameExitInitalAction()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        quitEvent += () =>
         {
-            GameExit();
+            // ui enable
+            //wantToQuitUI.SetActive(true);
+        };
+
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.wantsToQuit += applicationQuit;
+        #else
+            Application.wantsToQuit += applicationQuit;
+        #endif
+    }
+
+    private bool applicationQuit()
+    {
+        Debug.Log("applicationQuit");
+
+        if (!canApplicationQuit)
+        {
+            quitEvent?.Invoke();
         }
+
+        Debug.Log($"canApplicationQuit: {canApplicationQuit}");
+        return canApplicationQuit;
     }
 
     public void GameExit()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
+        Debug.Log("public GameExit()");
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
             Application.Quit();
 #endif
     }

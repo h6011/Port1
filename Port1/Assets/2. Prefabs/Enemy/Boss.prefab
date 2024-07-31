@@ -116,13 +116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  maxHp: 20
+  maxHp: 60
   enemyType: 1
   isUpgraded: 0
-  prefabs:
-    BossRifleBullet: {fileID: 1669140091896721891, guid: 4752860e9950f824ab781ed64801a1b7, type: 3}
-    BossShotgunBullet: {fileID: 226504794871931677, guid: d3685b605736d08448a577ad8339ab93, type: 3}
-    BossBombBullet: {fileID: 4461059342476830297, guid: 04037a43415d5e8459b6a6f42c8f7f40, type: 3}
   shotposTrs:
   - {fileID: 1013092668382951904}
   - {fileID: 4931478300547498527}
