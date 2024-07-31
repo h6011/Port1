@@ -239,11 +239,7 @@ public class GameManager : MonoBehaviour
             //wantToQuitUI.SetActive(true);
         };
 
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.wantsToQuit += applicationQuit;
-        #else
-            Application.wantsToQuit += applicationQuit;
-        #endif
+        Application.wantsToQuit += applicationQuit;
     }
 
     private bool applicationQuit()
