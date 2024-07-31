@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
 
     private float meteorTimer = 0f;
 
+    [Header("Player Settings")]
+    public PlayerSettings playerSettings;
+
 
 
 

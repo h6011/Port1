@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,7 @@ public class LobbyMainCanvasManger : MonoBehaviour
 {
     GameManager gameManager;
     RankingManager rankingManager;
+    PlayerSettingsManager playerSettingsManager;
 
 
     [Header("Ranking")]
@@ -27,6 +29,11 @@ public class LobbyMainCanvasManger : MonoBehaviour
     [SerializeField] private Button settingsBtn;
     [SerializeField] private Button exitGameBtn;
 
+    [Header("Settings UI")]
+
+    [Space]
+    [SerializeField] TMP_Dropdown fpsDropdown;
+
 
     private void Awake()
     {
@@ -37,11 +44,36 @@ public class LobbyMainCanvasManger : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         rankingManager = RankingManager.Instance;
+        playerSettingsManager = PlayerSettingsManager.Instance;
 
         buttonClickAction();
         autoBackBtnAction();
         visibleOnlyUI("Main");
+        settingsUIAction();
     }
+
+    private void settingsUIAction()
+    {
+        fpsDropdown.ClearOptions();
+
+        Array _fpsArray = Enum.GetValues(typeof(PlayerSettings.ePlayerSettingsFpsType));
+        int count = _fpsArray.Length;
+        List<string> fpsList = new List<string>();
+
+        for (int i = 0; i < count; i++)
+        {
+            fpsList.Add(_fpsArray.GetValue(i).ToString());
+        }
+
+        fpsDropdown.AddOptions(fpsList);
+
+        fpsDropdown.onValueChanged.AddListener((int call) => {
+            PlayerSettings.ePlayerSettingsFpsType selectedFpsType = (PlayerSettings.ePlayerSettingsFpsType)call;
+            gameManager.playerSettings.fpsType = selectedFpsType;
+        });
+
+    }
+
 
     private void autoBackBtnAction()
     {

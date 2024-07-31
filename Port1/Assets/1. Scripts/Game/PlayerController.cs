@@ -8,30 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
-    [System.Serializable]
-    public class PlayerSettings
-    {
-        [System.Serializable]
-        public class PlayerKeySettings
-        {
-            public KeyCode pauseKey = KeyCode.Escape;
-            public KeyCode shotKey = KeyCode.Space;
-        }
-
-        public enum ePlayerSettingsFpsType
-        {
-            NoLimit,
-            Fps30,
-            Fps60,
-            Fps120,
-            Fps240,
-            Fps300,
-            Fps500,
-        }
-
-        public PlayerKeySettings playerKeySettings;
-        public ePlayerSettingsFpsType fpsType;
-    }
+    
 
     
 
@@ -103,7 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Application.isPlaying)
         {
-            checkFps();
+            //checkFps();
         }
     }
 
@@ -111,7 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         LockInCamera.Instance.SetPlayer(capsuleCollider.size);
 
-        checkFps();
+        //checkFps();
         fillHp();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -292,16 +269,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void checkFps()
-    {
-        if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.NoLimit) Application.targetFrameRate = -1;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps30) Application.targetFrameRate = 30;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps60) Application.targetFrameRate = 60;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps120) Application.targetFrameRate = 120;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps240) Application.targetFrameRate = 240;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps300) Application.targetFrameRate = 300;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps500) Application.targetFrameRate = 500;
-    }
+    
 
     private void moveAction()
     {
