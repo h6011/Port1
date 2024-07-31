@@ -52,7 +52,7 @@ public class PlayerSettingsManager : MonoBehaviour
 
     private void Update()
     {
-        checkFps();
+        //CheckFps();
         //if (Input.anyKeyDown)
         //{
         //    Debug.Log(Input.inputString);
@@ -64,17 +64,21 @@ public class PlayerSettingsManager : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
+    private void setFps(int _fps)
+    {
+        Application.targetFrameRate = _fps;
+    }
 
-    private void checkFps()
+    public void CheckFps()
     {
         PlayerSettings playerSettings = gameManager.playerSettings;
-        if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.NoLimit) Application.targetFrameRate = -1;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps30) Application.targetFrameRate = 30;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps60) Application.targetFrameRate = 60;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps120) Application.targetFrameRate = 120;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps240) Application.targetFrameRate = 240;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps300) Application.targetFrameRate = 300;
-        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps500) Application.targetFrameRate = 500;
+        if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.NoLimit) setFps(-1);
+        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps30) setFps(30);
+        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps60) setFps(60);
+        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps120) setFps(120);
+        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps240) setFps(240);
+        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps300) setFps(300);
+        else if (playerSettings.fpsType == PlayerSettings.ePlayerSettingsFpsType.Fps500) setFps(500);
     }
 
 

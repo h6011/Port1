@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     EffectManager effectManager;
     MainCanvasManager mainCanvasManager;
     RankingManager rankingManager;
+    PlayerSettingsManager playerSettingsManager;
 
     Vector2 moveDir;
 
@@ -97,6 +98,9 @@ public class PlayerController : MonoBehaviour
         effectManager = EffectManager.Instance;
         mainCanvasManager = MainCanvasManager.Instance;
         rankingManager = RankingManager.Instance;
+        playerSettingsManager = PlayerSettingsManager.Instance;
+
+        playerSettingsManager.CheckFps();
     }
 
     private void Update()

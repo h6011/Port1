@@ -70,6 +70,7 @@ public class LobbyMainCanvasManger : MonoBehaviour
         fpsDropdown.onValueChanged.AddListener((int call) => {
             PlayerSettings.ePlayerSettingsFpsType selectedFpsType = (PlayerSettings.ePlayerSettingsFpsType)call;
             gameManager.playerSettings.fpsType = selectedFpsType;
+            playerSettingsManager.CheckFps();
         });
 
     }
